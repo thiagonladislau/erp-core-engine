@@ -81,3 +81,6 @@ Monitors service availability, environment context, and application status.
 Systems Analyst & Software Engineer
 
 GitHub: github.com/thiagoladislau
+
+## 📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
