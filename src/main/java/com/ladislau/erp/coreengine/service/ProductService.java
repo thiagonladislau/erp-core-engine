@@ -26,4 +26,34 @@ public class ProductService {
         return productRepository.save(newProduct);
     }
 
+    // Busca um produto pelo ID (retorna Optional para tratar caso não encontre)
+    public java.util.Optional<Product> getProductById(String id) {
+        return productRepository.findById(id);
+    }
+
+    // Atualiza um produto existente
+    public Product updateProduct(String id, String name, String sku, BigDecimal price, Integer stockQuantity) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+
+        product.setName(name);
+        product.setSku(sku);
+        product.setPrice(price);
+        product.setStockQuantity(stockQuantity);
+
+        return productRepository.save(product);
+    }
+
+    // Deleta um produto pelo ID
+    public void deleteProduct(String id) {
+        if (!productRepository.existsById(id)) {
+            throw new RuntimeException("Product not found with id: " + id);
+        }
+        productRepository.deleteById(id);
+    }
+
+
+
 }
+
+

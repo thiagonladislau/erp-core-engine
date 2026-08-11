@@ -3,6 +3,7 @@ package com.ladislau.erp.coreengine.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -33,9 +34,15 @@ public class Product
     //Getters
     public String getId() {return id; }
     public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+
     public String getSku() {return sku;}
+    public void setSku(String sku) {this.sku = sku;}
+
     public BigDecimal getPrice() {return price;}
+
     public Integer getStockQuantity() {return stockQuantity;}
+    public void setStockQuantity(Integer stockQuantity) {this.stockQuantity = stockQuantity;}
 
     //Setters /Busines Methods
         public void setPrice(BigDecimal price) {
