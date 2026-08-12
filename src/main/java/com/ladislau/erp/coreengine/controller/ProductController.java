@@ -3,6 +3,7 @@ package com.ladislau.erp.coreengine.controller;
 import com.ladislau.erp.coreengine.dto.ProductDTO;
 import com.ladislau.erp.coreengine.model.Product;
 import com.ladislau.erp.coreengine.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class ProductController {
 
     // POST: Cadastrar novo produto
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody ProductDTO productDTO) {
         Product createdProduct = productService.createProduct(
                 productDTO.getName(),
                 productDTO.getSku(),
@@ -47,7 +48,7 @@ public class ProductController {
 
     // PUT: Atualizar produto existente por ID
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable String id, @RequestBody ProductDTO productDTO) {
+    public ResponseEntity<Product> updateProduct(@PathVariable String id, @Valid @RequestBody ProductDTO productDTO) {
         try {
             Product updatedProduct = productService.updateProduct(
                     id,

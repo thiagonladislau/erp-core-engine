@@ -1,12 +1,25 @@
 package com.ladislau.erp.coreengine.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public class ProductDTO {
 
+    @NotBlank(message = "Name cannot be blank")
     private String name;
+
+    @NotBlank(message = "SKU cannot be blank")
     private String sku;
+
+    @NotNull(message = "Price is required")
+    @Positive(message = "Price must be greater than zero")
     private BigDecimal price;
+
+    @NotNull(message = "Stock quantity is required")
+    @Min(value = 0, message = "Stock quantity cannot be negative")
     private Integer stockQuantity;
 
     // Construtor default
