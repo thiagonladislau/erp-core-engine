@@ -8,6 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+
 import java.util.List;
 
 @RestController
@@ -20,10 +24,12 @@ public class ProductController {
         this.productService = productService;
     }
 
-    // GET: Listar todos
+    // GET: List product paginable
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<Page<Product>> getAllProducts(
+            @PageableDefault(page = 0, size = 10, sort = "name") Pageable pageable) {
+        Page<Product> products = productService.getAllProducts(pageable);
+        return ResponseEntity.ok(products);
     }
 
     // GET: Buscar por ID

@@ -3,6 +3,8 @@ package com.ladislau.erp.coreengine.service;
 import com.ladislau.erp.coreengine.model.Product;
 import com.ladislau.erp.coreengine.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,8 +19,9 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    //Searching products with paginable and order
+    public Page<Product> getAllProducts(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 
     public Product createProduct(String name, String sku, BigDecimal price, Integer stockQuantity) {
